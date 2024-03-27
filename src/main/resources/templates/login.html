@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://www.google.com/recaptcha/api.js?render=<YOUR_SITE_KEY>"></script>
+    <script>
+        function reCapt() {
+            grecaptcha.ready(function() {
+                grecaptcha.execute('<YOUR_SITE_KEY>', {action: 'submit'}).then(function(token) {
+                    $('#token').val(token);
+                });
+            });
+        }
+    </script>
+
+
+</head>
+<body>
+    <form action="/login" method="post">
+        <input type="text" name="name" value="아이디입력">
+        <input type="text" name="password" value="비밀번호입력">
+
+        <button type="button" class="g-recaptcha" onclick="reCapt()">토큰받아옴</button>
+        <br>
+        <textarea type="text" id="token" name="token" value=""></textarea>
+        <br>
+
+        <button type="submit">전송</button>
+    </form>
+
+</body>
+</html>
